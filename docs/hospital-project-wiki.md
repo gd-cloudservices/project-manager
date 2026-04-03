@@ -2,26 +2,24 @@
 
 This document tracks all modules and features that belong to the **Hospital Project** (patient-facing/hospital-facing), NOT the CMS (admin/config platform).
 
-> **Market:** Philippines
+**Market:** Philippines
 > **Regulatory Framework:** DOH, PhilHealth (RA 11223 — Universal Health Care Act), BIR, PRC
-
----
+* * *
 
 ## Guiding Principle
 
-- **CMS** = Developer/admin platform for managing tenants, users, permissions, config, platform billing, and system-level settings.
-- **Hospital Project** = Hospital-facing application for clinical operations, patient management, billing to patients/HMOs, and integrations.
-
----
+*   **CMS** = Developer/admin platform for managing tenants, users, permissions, config, platform billing, and system-level settings.
+*   **Hospital Project** = Hospital-facing application for clinical operations, patient management, billing to patients/HMOs, and integrations.
+* * *
 
 ## Modules in Hospital Project
 
-### 1. Master Patient Index (MPI)
+### 1\. Master Patient Index (MPI)
 
 #### Core Patient Identity
 
 | Feature | Description |
-|---|---|
+| ---| --- |
 | Patient data model & schema | Design and implement patient entity with PH-specific fields |
 | Patient CRUD API | Create, read, update, delete patient records |
 | Patient registration form UI | Frontend for registering new patients |
@@ -34,7 +32,7 @@ This document tracks all modules and features that belong to the **Hospital Proj
 #### Philippine-Specific Patient Fields
 
 | Field | Description |
-|---|---|
+| ---| --- |
 | PhilHealth Member Number (PCN) | PhilHealth Card Number — required for eClaims |
 | PhilSys Number (PSN) | National ID under Philippine Identification System (RA 11055) |
 | UMID / SSS / GSIS Number | Unified Multi-Purpose ID or government employee IDs |
@@ -51,14 +49,14 @@ This document tracks all modules and features that belong to the **Hospital Proj
 | PhilHealth membership type | Employed, Self-Employed, Indigent, Sponsored, Lifetime, OFW |
 | HMO affiliations | Link to HMO member records (Maxicare, Intellicare, MedoCard, etc.) |
 
----
+* * *
 
-### 2. Outpatient Department (OPD)
+### 2\. Outpatient Department (OPD)
 
 #### Core OPD
 
 | Feature | Description |
-|---|---|
+| ---| --- |
 | Visit/encounter data model | Design visit entity and relationships |
 | Visit registration API | Register new visits/encounters |
 | Visit registration UI | Frontend for visit check-in |
@@ -71,7 +69,7 @@ This document tracks all modules and features that belong to the **Hospital Proj
 #### Philippine-Specific OPD Features
 
 | Feature | Description |
-|---|---|
+| ---| --- |
 | Senior Citizen / PWD priority lane | Flag and queue prioritization per RA 9994 and RA 10754 |
 | 4Ps / Malasakit triage tagging | Tag visits for indigent benefit routing at registration |
 | Chief complaint in Filipino/English | Support bilingual entry for clinical notes |
@@ -81,14 +79,14 @@ This document tracks all modules and features that belong to the **Hospital Proj
 | Referral slip generation | Inter-facility referral per DOH referral system guidelines |
 | DOH Sentrong Sigla / PhilHealth accreditation display | Hospital classification banner (Level 1/2/3) |
 
----
+* * *
 
-### 3. Order Management
+### 3\. Order Management
 
 #### Core Orders
 
 | Feature | Description |
-|---|---|
+| ---| --- |
 | Lab order API | Create and manage laboratory orders |
 | Lab order entry & results UI | Frontend for lab order workflow |
 | Radiology order API | Create and manage radiology/imaging orders |
@@ -99,7 +97,7 @@ This document tracks all modules and features that belong to the **Hospital Proj
 #### Philippine-Specific Order Features
 
 | Feature | Description |
-|---|---|
+| ---| --- |
 | Generic drug name requirement | RA 9502 — prescriptions must show generic name first, brand name in parentheses |
 | DOH Essential Medicines List (NEML) | Formulary reference aligned with DOH National Essential Medicines List |
 | Drug interaction checking | Reference Philippine MIMS / local drug database |
@@ -109,14 +107,14 @@ This document tracks all modules and features that belong to the **Hospital Proj
 | DOH-required lab panels | Mandatory tests per DOH admission protocols (CBC, UA, etc.) |
 | Chest X-ray pre-admission requirement | DOH-mandated for inpatient admission in accredited hospitals |
 
----
+* * *
 
-### 4. Billing (Patient & HMO)
+### 4\. Billing (Patient & HMO)
 
 #### Core Billing
 
 | Feature | Description |
-|---|---|
+| ---| --- |
 | Billing data model | Charges, invoices, payments schema |
 | Charge capture & invoicing API | Generate bills from services rendered |
 | Billing & invoicing UI | Frontend for billing staff |
@@ -128,7 +126,7 @@ This document tracks all modules and features that belong to the **Hospital Proj
 #### Philippine-Specific Billing Features
 
 | Feature | Description |
-|---|---|
+| ---| --- |
 | Official Receipt (OR) generation | BIR-accredited OR format; required for all payments under NIRC |
 | BIR CAS / POS compliance | Cash Register Machine (CRM) / Point-of-Sale machine integration requirements |
 | VAT exemption — Senior Citizens | RA 9994: 20% discount + VAT exemption on medicines, services, and fees |
@@ -144,14 +142,14 @@ This document tracks all modules and features that belong to the **Hospital Proj
 | Professional fee (PF) splitting | Doctor's professional fee tracked separately from hospital charges |
 | Magna Carta for Nurses (RA 9173) | Separate tracking of nurse overtime/hazard pay as cost center |
 
----
+* * *
 
-### 5. PhilHealth eClaims (Operations)
+### 5\. PhilHealth eClaims (Operations)
 
 #### Core eClaims
 
 | Feature | Description |
-|---|---|
+| ---| --- |
 | XML generation for eClaims | Generate PhilHealth-compliant XML documents |
 | eClaims submission API | Submit claims to PhilHealth electronically |
 | eClaims management UI | Track submission status and responses |
@@ -160,7 +158,7 @@ This document tracks all modules and features that belong to the **Hospital Proj
 #### Philippine-Specific eClaims Features
 
 | Feature | Description |
-|---|---|
+| ---| --- |
 | PhilHealth Claim Form 1 (CF1) | Employer / facility data form |
 | PhilHealth Claim Form 2 (CF2) | Member / patient data form |
 | PhilHealth Claim Form 3 (CF3) | Attending physician data form |
@@ -177,28 +175,27 @@ This document tracks all modules and features that belong to the **Hospital Proj
 | Attending physician PRC license number | PRC license and PhilHealth accreditation number required on CF3 |
 | 45-day claim filing deadline | System warning when claims approach the 45-calendar-day filing window |
 
----
+* * *
 
 ## What Stays in CMS
 
 For reference, the CMS handles:
 
-- Auth & access control (login, RBAC, delegation chain)
-- User management (invite-only onboarding, profiles)
-- Hospital/tenant management (registration, config, feature toggles, DOH license to operate number, PhilHealth accreditation number)
-- Doctor management (profiles, specialties, HMO affiliations, PRC license number, PhilHealth accreditation number, scheduling config)
-- Clinical forms (form builder, templates, submission config)
-- PhilHealth config & monitoring (CMS-level configuration and claim monitoring dashboard)
-- i18n (translation management — Filipino/English language support)
-- Platform billing (developer → hospital subscription/licensing)
-- System & utilities (audit trails, settings, exports)
-
----
+*   Auth & access control (login, RBAC, delegation chain)
+*   User management (invite-only onboarding, profiles)
+*   Hospital/tenant management (registration, config, feature toggles, DOH license to operate number, PhilHealth accreditation number)
+*   Doctor management (profiles, specialties, HMO affiliations, PRC license number, PhilHealth accreditation number, scheduling config)
+*   Clinical forms (form builder, templates, submission config)
+*   PhilHealth config & monitoring (CMS-level configuration and claim monitoring dashboard)
+*   i18n (translation management — Filipino/English language support)
+*   Platform billing (developer → hospital subscription/licensing)
+*   System & utilities (audit trails, settings, exports)
+* * *
 
 ## Philippine Regulatory Reference
 
 | Regulation | Relevance |
-|---|---|
+| ---| --- |
 | RA 11223 — Universal Health Care Act | PhilHealth coverage for all Filipinos; mandatory integration |
 | RA 9502 — Cheaper Medicines Act | Generic drug name required first on all prescriptions |
 | RA 9994 — Expanded Senior Citizens Act | 20% discount + VAT exemption; priority lanes |
@@ -210,19 +207,18 @@ For reference, the CMS handles:
 | NIRC / BIR regulations | Official receipts, VAT exemptions, CRM/POS compliance |
 | PhilHealth Circulars | Case rate packages, benefit schedules, eClaims filing rules |
 
----
+* * *
 
 ## Notes
 
-- When in doubt, ask: "Is this a hospital operation or a platform admin operation?"
-- Hospital operations = Hospital Project
-- Platform/tenant admin = CMS
-- All monetary values in Philippine Peso (PHP)
-- Date format: MM/DD/YYYY (Philippine standard)
-- Default language: Filipino (fil) + English (en)
-- Created: 2026-04-02
-- Last updated: 2026-04-02 (Philippine market alignment)
+*   When in doubt, ask: "Is this a hospital operation or a platform admin operation?"
+*   Hospital operations = Hospital Project
+*   Platform/tenant admin = CMS
+*   All monetary values in Philippine Peso (PHP)
+*   Date format: MM/DD/YYYY (Philippine standard)
+*   Default language: Filipino (fil) + English (en)
+*   Created: 2026-04-02
+*   Last updated: 2026-04-02 (Philippine market alignment)
+* * *
 
----
-
-*Source: ClickUp — healthcare workspace / CMS space / Hospital Project Wiki*
+_Source: ClickUp — healthcare workspace / CMS space / Hospital Project Wiki_
